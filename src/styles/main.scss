@@ -1,0 +1,9 @@
+@use './variables.scss';
+
+body {
+    color: $primary-font-color;
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}

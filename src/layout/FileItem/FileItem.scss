@@ -1,0 +1,43 @@
+.file-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #e9ecef;
+
+    .file-cell {
+        flex: 1;
+        padding: 0 0.5rem;
+
+        .originalName {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .fileType {
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+
+        .uploadedAt {
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .file-cell {
+            padding: 0.25rem 0;
+
+            .originalName,
+            .fileType,
+            .uploadedAt {
+                font-size: 0.875rem;
+                margin-bottom: 0.25rem;
+            }
+        }
+    }
+}

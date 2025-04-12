@@ -1,0 +1,70 @@
+.dashboard-container {
+    display: flex;
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    .dashboard-title {
+        font-size: 1.5rem;
+    }
+    h1 {
+        margin: 0;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: $primary-bg-color;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
+
+.file-list {
+    margin-top: 10px;
+    flex-grow: 1;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 10px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .dashboard-title {
+            font-size: 1.2rem;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+
+    .file-list {
+        margin-top: 5px;
+    }
+
+    .pagination {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+}
