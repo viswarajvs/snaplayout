@@ -1,0 +1,51 @@
+{
+"type": "projectDashboard",
+  "project": {
+    "title": "Website Redesign",
+    "description": "Revamping the corporate website with a fresh look and better UX.",
+    "status": "In Progress",
+    "tags": ["UI/UX", "Frontend", "High Priority"],
+    "timeline": {
+      "startDate": "2025-01-15",
+      "endDate": "2025-04-30"
+    },
+    "team": [
+      { "name": "Alice Johnson", "role": "Designer", "email": "alice@example.com" },
+      { "name": "Bob Smith", "role": "Frontend Dev", "email": "bob@example.com" }
+    ],
+    "milestones": [
+      { "name": "Design Approval", "dueDate": "2025-02-10", "completed": true },
+      { "name": "Frontend Dev Complete", "dueDate": "2025-03-20", "completed": false }
+    ],
+    "tasks": [
+      {
+        "taskName": "Header Component",
+        "assignee": "Bob Smith",
+        "dueDate": "2025-02-25",
+        "status": "In Progress",
+        "priority": "High"
+      },
+      {
+        "taskName": "Homepage Mockup",
+        "assignee": "Alice Johnson",
+        "dueDate": "2025-01-30",
+        "status": "Completed",
+        "priority": "Medium"
+      }
+    ],
+    "files": [
+      {
+        "fileName": "homepage.png",
+        "uploadedBy": "Alice Johnson",
+        "uploadDate": "2025-01-18"
+      }
+    ],
+    "comments": [
+      {
+        "user": "Bob Smith",
+        "comment": "Working on responsive layout for mobile.",
+        "timestamp": "2025-02-01"
+      }
+    ]
+  }
+}

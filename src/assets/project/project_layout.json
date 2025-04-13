@@ -1,0 +1,99 @@
+{
+  "type": "projectDashboard",
+  "layout": {
+    "title": "Project Dashboard",
+    "fields": [
+      {
+        "label": "Project Title",
+        "key": "project.title",
+        "type": "text"
+      },
+      {
+        "label": "Description",
+        "key": "project.description",
+        "type": "textarea"
+      },
+      {
+        "label": "Status",
+        "key": "project.status",
+        "type": "badge"
+      },
+      {
+        "label": "Tags",
+        "key": "project.tags",
+        "type": "list"
+      },
+      {
+        "label": "Timeline",
+        "type": "group",
+        "key": "project.timeline",
+        "fields": [
+          {
+            "label": "Start Date",
+            "key": "project.timeline.startDate",
+            "type": "date",
+            "parent": "timeline"
+          },
+          {
+            "label": "End Date",
+            "key": "project.timeline.endDate",
+            "type": "date",
+            "parent": "timeline"
+          }
+        ]
+      },
+      {
+        "label": "Team Members",
+        "key": "project.team",
+        "type": "table",
+        "columns": [
+          { "title": "Name", "dataIndex": "name", "key": "name" },
+          { "title": "Role", "dataIndex": "role", "key": "role" },
+          { "title": "Email", "dataIndex": "email", "key": "email" }
+        ]
+      },
+      {
+        "label": "Milestones",
+        "key": "project.milestones",
+        "type": "table",
+        "columns": [
+          { "title": "Milestone", "dataIndex": "name", "key": "name" },
+          { "title": "Due Date", "dataIndex": "dueDate", "key": "dueDate" },
+          { "title": "Completed", "dataIndex": "completed", "key": "completed" }
+        ]
+      },
+      {
+        "label": "Tasks",
+        "key": "project.tasks",
+        "type": "table",
+        "columns": [
+          { "title": "Task Name", "dataIndex": "taskName", "key": "taskName" },
+          { "title": "Assignee", "dataIndex": "assignee", "key": "assignee" },
+          { "title": "Due", "dataIndex": "dueDate", "key": "dueDate" },
+          { "title": "Status", "dataIndex": "status", "key": "status" },
+          { "title": "Priority", "dataIndex": "priority", "key": "priority" }
+        ]
+      },
+      {
+        "label": "Files",
+        "key": "project.files",
+        "type": "table",
+        "columns": [
+          { "title": "File Name", "dataIndex": "fileName", "key": "fileName" },
+          { "title": "Uploaded By", "dataIndex": "uploadedBy", "key": "uploadedBy" },
+          { "title": "Upload Date", "dataIndex": "uploadDate", "key": "uploadDate" }
+        ]
+      },
+      {
+        "label": "Comments",
+        "key": "project.comments",
+        "type": "table",
+        "columns": [
+          { "title": "User", "dataIndex": "user", "key": "user" },
+          { "title": "Comment", "dataIndex": "comment", "key": "comment" },
+          { "title": "Posted At", "dataIndex": "timestamp", "key": "timestamp" }
+        ]
+      }
+    ]
+  }
+}

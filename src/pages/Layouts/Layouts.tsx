@@ -16,6 +16,7 @@ interface File {
     uploadedAt: Date;
     json: any;
     key?: number; // Added optional key property
+    __v?: number; // Added optional __v property
 }
 interface UploadData {
     [key: string]: any;
@@ -80,7 +81,7 @@ const Layout: React.FC = () => {
     }
     const handleDownload = (file: File) => {
         loader?.showLoader()
-        const { key, _id, filename, ...filteredFile } = file;
+        const { key, _id, filename, uploadedAt, __v, ...filteredFile } = file;
         const blob = new Blob([JSON.stringify(filteredFile)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');

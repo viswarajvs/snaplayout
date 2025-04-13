@@ -44,9 +44,13 @@ export const getRequest = async (url: string, params?: object) => {
 };
 
 // POST request
-export const postRequest = async (url: string, data: object) => {
+export const postRequest = async (
+    url: string,
+    data: object,
+    config?: object
+) => {
     try {
-        return await axiosInstance.post(url, data);
+        return await axiosInstance.post(url, data, config);
     } catch (error) {
         throw error;
     }

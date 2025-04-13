@@ -45,12 +45,9 @@ const RenderItem: React.FC<RenderItemProps> = ({
                 );
             case "textarea":
                 return (
-                    <textarea
-                        name={field.name}
-                        placeholder={field.placeholder}
-                        value={value}
-                        style={{ display: "block", width: "100%", padding: "0.5rem" }}
-                    />
+                    <div>
+                        {value}
+                    </div>
                 );
             case "list":
                 return (
@@ -89,8 +86,14 @@ const RenderItem: React.FC<RenderItemProps> = ({
                         />
                     </>
                 )
+            case "badge":
+                return (
+                    <div className={`badge ${value?.replaceAll(' ', '').toLowerCase()}`}>
+                        {value}
+                    </div>
+                )
             default:
-                return null;
+                return <label>{value}</label>;
         }
     }
     const getClassNameBasedOnType = () => {

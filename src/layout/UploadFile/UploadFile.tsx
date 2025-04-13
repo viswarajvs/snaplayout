@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Upload, Button, Card, Typography } from "antd";
+import { Upload, Button, Card, Typography, Progress } from "antd";
 import { CloseOutlined, UploadOutlined } from "@ant-design/icons";
 import './UploadFile.scss'; // Import the CSS file
 import { MessageContext } from "@/context/MessageContext";
@@ -12,16 +12,19 @@ interface UploadFileProps {
     show: boolean;
     setShow: (show: boolean) => void;
     title: string;
+    percentage: number;
 }
 
 const UploadFile: React.FC<UploadFileProps> = ({
     uploadFn,
     show,
     setShow,
-    title
+    title,
+    percentage
 }) => {
     const [file, setFile] = useState<File | null>(null);
     const messageApi = React.useContext(MessageContext);
+    const [isUploading, setIsUploading] = useState(false);
     const handleFileChange = (info: any) => {
         const file = info.fileList?.[0].originFileObj;
         setFile(file);
@@ -31,17 +34,19 @@ const UploadFile: React.FC<UploadFileProps> = ({
 
     const handleUpload = () => {
         if (file) {
+            setIsUploading(true)
             loader?.showLoader();
             const reader = new FileReader();
             reader.onload = (e) => {
                 try {
                     const text = e.target?.result as string;
                     const json = JSON.parse(text);
-                    uploadFn({...json, filename: file.name})
+                    uploadFn({ ...json, filename: file.name })
                 } catch (error) {
                     if (messageApi) messageApi.error("Invalid JSON file!");
                 } finally {
                     loader?.hideLoader();
+                    setIsUploading(false)
                 }
             };
             reader.readAsText(file);
@@ -52,8 +57,10 @@ const UploadFile: React.FC<UploadFileProps> = ({
     if (!show) return null
     return (
         <div className="upload-popup">
-
             <Card className="popup-content" variant="borderless">
+                {isUploading &&
+                    <Progress percent={percentage}  status="active" showInfo={true} style={{ width: "100%" }} />
+                }
                 <Button
                     type="text"
                     className="close-button"

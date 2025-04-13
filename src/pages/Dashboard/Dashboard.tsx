@@ -32,6 +32,7 @@ const Dashboard: React.FC = () => {
     const [showJSONLayout, setShowJSONLayout] = useState(false);
     const messageApi = useContext(MessageContext);
     const loader = useContext(LoaderContext);
+    const [uploadPercentage, setUploadPercentage] = useState(0);
     const navigate = useNavigate()
     useEffect(() => {
         readAllFiles()
@@ -66,7 +67,7 @@ const Dashboard: React.FC = () => {
             },
         };
         try {
-            const res = await fileServices.createFile(jsonData);
+            const res = await fileServices.createFile(jsonData, setUploadPercentage);
             console.log(res);
             await readAllFiles();
             setShowJSONUpload(false);
@@ -92,8 +93,9 @@ const Dashboard: React.FC = () => {
         })
     }
     const handleDownload = (file: File) => {
+        const { filename, ...rest } = file?.json || {};
         loader?.showLoader()
-        const blob = new Blob([JSON.stringify(file?.json)], { type: 'application/json' });
+        const blob = new Blob([JSON.stringify(rest)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -197,7 +199,7 @@ const Dashboard: React.FC = () => {
                 />
             </div>
 
-            <UploadFile title='Select JSON file' show={showJSONUpload} setShow={setShowJSONUpload} uploadFn={handleFileUpload} />
+            <UploadFile title='Select JSON file' percentage={uploadPercentage} show={showJSONUpload} setShow={setShowJSONUpload} uploadFn={handleFileUpload} />
 
             <Popup
                 isOpen={showJSONLayout}

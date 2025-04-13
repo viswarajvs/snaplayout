@@ -41,11 +41,6 @@ const Header: React.FC = () => {
 
     };
 
-    const handleSettings = () => {
-        setMenuOpen(false)
-        console.log('Settings clicked');
-    };
-
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
@@ -81,7 +76,7 @@ const Header: React.FC = () => {
                         />
                         {menuOpen && (
                             <div className="profile-menu">
-                                <button onClick={handleSettings}>Settings</button>
+                                {/* <button onClick={handleSettings}>Settings</button> */}
                                 <button onClick={handleLogout}>Logout</button>
                             </div>
                         )}

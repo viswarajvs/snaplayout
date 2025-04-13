@@ -1,0 +1,71 @@
+{
+"type": "projectDashboard",
+  "project": {
+    "title": "Enterprise CRM Development",
+    "description": "Building a full-featured CRM platform for internal sales operations.",
+    "status": "Completed",
+    "tags": ["Backend", "Integration", "Enterprise"],
+    "timeline": {
+      "startDate": "2024-11-01",
+      "endDate": "2025-06-30"
+    },
+    "team": [
+      { "name": "Emma Lee", "role": "Project Manager", "email": "emma@example.com" },
+      { "name": "David Miller", "role": "Backend Lead", "email": "david@example.com" },
+      { "name": "Sophie Ray", "role": "QA Tester", "email": "sophie@example.com" },
+      { "name": "Tom White", "role": "DevOps", "email": "tom@example.com" }
+    ],
+    "milestones": [
+      { "name": "Requirement Gathering", "dueDate": "2024-11-20", "completed": true },
+      { "name": "Database Design", "dueDate": "2024-12-15", "completed": true },
+      { "name": "API Integration", "dueDate": "2025-03-15", "completed": false }
+    ],
+    "tasks": [
+      {
+        "taskName": "Setup MongoDB Cluster",
+        "assignee": "Tom White",
+        "dueDate": "2024-11-10",
+        "status": "Completed",
+        "priority": "High"
+      },
+      {
+        "taskName": "Implement Login API",
+        "assignee": "David Miller",
+        "dueDate": "2024-12-05",
+        "status": "In Progress",
+        "priority": "High"
+      },
+      {
+        "taskName": "Write Unit Tests",
+        "assignee": "Sophie Ray",
+        "dueDate": "2025-01-15",
+        "status": "Pending",
+        "priority": "Medium"
+      }
+    ],
+    "files": [
+      {
+        "fileName": "api-docs-v1.pdf",
+        "uploadedBy": "David Miller",
+        "uploadDate": "2024-12-01"
+      },
+      {
+        "fileName": "system-architecture.drawio",
+        "uploadedBy": "Emma Lee",
+        "uploadDate": "2024-11-15"
+      }
+    ],
+    "comments": [
+      {
+        "user": "Emma Lee",
+        "comment": "Client requested API logs be encrypted.",
+        "timestamp": "2025-01-10"
+      },
+      {
+        "user": "Tom White",
+        "comment": "Deployment to staging scheduled this week.",
+        "timestamp": "2025-01-12"
+      }
+    ]
+  }
+}

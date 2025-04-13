@@ -2,13 +2,15 @@
 
 }
 .field-title {
-    font-size: 1.1rem;
-    font-weight: 600;
+    color: #7d838a;
+    font-size: 0.8rem;
     margin-bottom: 8px;
 }
 .field-value {
-    padding: 5px;
+    font-size: 1rem;
+    font-weight: 600;
     margin: 0;
+    color: #3b3b3b;
     ul {
         margin: 0;
     }
@@ -25,6 +27,28 @@
   }
 .sub-field {
     font-size: 0.9rem !important;
+    color: #3b3b3b;
+}
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #fff;
+
+    &.inprogress {
+        background-color: #ffa500; // Orange
+    }
+
+    &.completed {
+        background-color: #28a745; // Green
+    }
+
+    &.new {
+        background-color: #007bff; // Blue
+    }
 }
 .dynamic-form-renderer {
     display: grid;
@@ -32,7 +56,7 @@
     gap: 16px;
 
     @media (max-width: 768px) {
-        grid-template-columns: 1fr;
+        // grid-template-columns: 1fr;
     }
 }
 
