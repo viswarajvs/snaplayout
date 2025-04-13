@@ -39,10 +39,13 @@ const Dashboard: React.FC = () => {
 
     const readAllFiles = async () => {
         loader?.showLoader()
-        const fileResponse = await fileServices.readFiles()
-        loader?.hideLoader()
-        console.log(fileResponse)
-        setData(fileResponse)
+        fileServices.readFiles().then((fileResponse: any) => {
+            console.log(fileResponse)
+            setData(fileResponse)
+        }).finally(() => {
+            loader?.hideLoader()
+        })
+
     }
     const [currentPage, setCurrentPage] = useState(1);
     const filesPerPage = 5;
@@ -204,9 +207,9 @@ const Dashboard: React.FC = () => {
                 }}
                 title={openFIle?.filename || ''}
             >
-               <DynamicFormRenderer
+                <DynamicFormRenderer
                     record={openFIle}
-               />
+                />
             </Popup>
 
             <Modal
