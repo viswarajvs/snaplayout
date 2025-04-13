@@ -2,7 +2,8 @@ import axios, { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 
 
 // Create an Axios instance with a base URL
 const axiosInstance: AxiosInstance = axios.create({
-    baseURL: 'https://snaplayout-webapi.onrender.com/api/',
+    // baseURL: 'https://snaplayout-webapi.onrender.com/api/',
+    baseURL: import.meta.env.VITE_API_URL,
     timeout: 5000, // Optional: Set a timeout for requests
     headers: {
         'Content-Type': 'application/json',

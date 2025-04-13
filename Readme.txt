@@ -27,7 +27,9 @@ This required handling token management and ensuring session validity across ref
 Additionally, I deployed the app to demonstrate a fully functional end-to-end flow in a live environment.
 
 ### Instructions to run assignment locally
+https://github.com/viswarajvs/snaplayout-ui
 frontent - npm install -> npm run dev
+https://github.com/viswarajvs/snaplayout-webapi
 backend - npm install -> npm run dev
 
 ### What did you not include in your solution that you want us to know about?

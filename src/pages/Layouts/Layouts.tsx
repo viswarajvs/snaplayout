@@ -42,14 +42,6 @@ const Layout: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const filesPerPage = 5;
 
-    const handleOpen = (file: string) => {
-        alert(`Opening ${file}`);
-    };
-
-    const handleOpenInNewWindow = (file: string) => {
-        alert(`Opening ${file} in a new window`);
-    };
-
     const handleFileUpload = async (data: UploadData): Promise<void> => {
         const jsonData = {
             ...data,
@@ -122,7 +114,7 @@ const Layout: React.FC = () => {
                     </div>
                 </Space>
             </div>
-            <div className="file-list-container" style={{ maxHeight: '100vh', overflowY: 'auto' }}>
+            <div className="file-list-container" style={{ maxHeight: '100dvh', overflowY: 'auto' }}>
                 <Table
                     columns={[
                         {
