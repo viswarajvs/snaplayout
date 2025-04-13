@@ -1,0 +1,33 @@
+{
+  "type": "purchaseOrder",
+  "details": {
+    "header": {
+      "orderNumber": "PO123456",
+      "date": "2023-10-01",
+      "company": "Tech Corp",
+      "address": "123 Tech Lane, Silicon Valley, CA",
+      "phone": "(123) 456-7890"
+    },
+    "lines": {
+      "items": [
+        {
+          "itemNumber": "ITM001",
+          "description": "Laptop",
+          "quantity": 10,
+          "unitPrice": 1200.00,
+          "totalPrice": 12000.00
+        },
+        {
+          "itemNumber": "ITM002",
+          "description": "Monitor",
+          "quantity": 20,
+          "unitPrice": 300.00,
+          "totalPrice": 6000.00
+        }
+      ],
+      "subtotal": 18000.00,
+      "tax": 1800.00,
+      "total": 19800.00
+    }
+  }
+}

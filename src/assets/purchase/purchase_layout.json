@@ -1,0 +1,62 @@
+{
+  "type": "purchaseOrder",
+  "layout": {
+    "title": "Purchase Order",
+    "fields": [
+      {
+        "label": "Order Number",
+        "key": "details.header.orderNumber",
+        "type": "text"
+      },
+      {
+        "label": "Date",
+        "key": "details.header.date",
+        "type": "text"
+      },
+      {
+        "label": "Company",
+        "key": "details.header.company",
+        "type": "text"
+      },
+      {
+        "label": "Address",
+        "key": "details.header.address",
+        "type": "text"
+      },
+      {
+        "label": "Phone",
+        "key": "details.header.phone",
+        "type": "text"
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "label": "Items",
+        "key": "details.lines.items",
+        "type": "table",
+        "columns": [
+          { "title": "Item Number", "dataIndex": "itemNumber", "key": "itemNumber" },
+          { "title": "Description", "dataIndex": "description", "key": "description" },
+          { "title": "Unit Price", "dataIndex": "unitPrice", "key": "unitPrice" },
+          { "title": "Total Price", "dataIndex": "totalPrice", "key": "totalPrice" }
+        ]
+      },
+      {
+        "label": "Subtotal",
+        "key": "details.lines.subtotal",
+        "type": "text"
+      },
+      {
+        "label": "Tax",
+        "key": "details.lines.tax",
+        "type": "text"
+      },
+      {
+        "label": "Total",
+        "key": "details.lines.total",
+        "type": "text"
+      }
+    ]
+  }
+}

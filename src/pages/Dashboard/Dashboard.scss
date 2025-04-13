@@ -10,10 +10,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+
     .dashboard-title {
         font-size: 1.5rem;
     }
+
     h1 {
         margin: 0;
     }
@@ -25,6 +26,85 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
+    }
+}
+
+.ant-table-thead {
+    tr {
+        th {
+            background-color: $secondary-bg-color !important;
+            color: $secondary-font-color !important;
+        }
+    }
+
+}
+
+.three-dot-menu-actions {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 10;
+
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px 20px;
+        background: none;
+        border: none;
+        text-align: left;
+        font-size: 1rem;
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #f1f1f1;
+        }
+    }
+}
+tbody {
+    overflow-y: auto;
+}
+.dashboard-layout-info {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 0.8rem; // Smaller size
+    font-style: italic;
+    margin-bottom: 10px;
+
+    a {
+        margin-left: 5px;
+        color: $link-color;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.delete-button {
+    color: #631111 !important;
+}
+
+.three-dot-menu {
+    position: relative;
+
+    .ant-btn-link {
+        padding: 0;
+        font-size: 1.2rem;
+        color: #333;
+
+        &:hover {
+            color: $primary-bg-color;
+        }
     }
 }
 

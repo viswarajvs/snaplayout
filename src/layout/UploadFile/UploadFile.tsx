@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import { Upload, Button, Card, Typography, message } from "antd";
+import React, { useContext, useState } from "react";
+import { Upload, Button, Card, Typography } from "antd";
 import { CloseOutlined, UploadOutlined } from "@ant-design/icons";
 import './UploadFile.scss'; // Import the CSS file
+import { MessageContext } from "@/context/MessageContext";
+import { LoaderContext } from "@/context/LoaderContext";
 
 const { Title, Text } = Typography;
 
 interface UploadFileProps {
-    uploadFn: (data: any) => void;
+    uploadFn: (data: any) => Promise<void>;
     show: boolean;
     setShow: (show: boolean) => void;
     title: string;
@@ -19,42 +21,38 @@ const UploadFile: React.FC<UploadFileProps> = ({
     title
 }) => {
     const [file, setFile] = useState<File | null>(null);
-    const [jsonData, setJsonData] = useState<any>(null);
-
+    const messageApi = React.useContext(MessageContext);
     const handleFileChange = (info: any) => {
         const file = info.fileList?.[0].originFileObj;
         setFile(file);
     };
 
+    const loader = useContext(LoaderContext);
+
     const handleUpload = () => {
         if (file) {
+            loader?.showLoader();
             const reader = new FileReader();
             reader.onload = (e) => {
                 try {
                     const text = e.target?.result as string;
                     const json = JSON.parse(text);
-                    uploadFn({
-                        ...json,
-                        filename: file?.name,
-                        uploadedAt: {
-                            type: Date,
-                            default: Date.now,
-                        },
-                    });
-                    setJsonData(json);
-                    message.success("File processed successfully!");
+                    uploadFn({...json, filename: file.name})
                 } catch (error) {
-                    message.error("Invalid JSON file!");
+                    if (messageApi) messageApi.error("Invalid JSON file!");
+                } finally {
+                    loader?.hideLoader();
                 }
             };
             reader.readAsText(file);
         } else {
-            message.warning("Please select a file first!");
+            if (messageApi) messageApi.warning("Please select a file first!");
         }
     };
     if (!show) return null
     return (
         <div className="upload-popup">
+
             <Card className="popup-content" variant="borderless">
                 <Button
                     type="text"
@@ -76,6 +74,7 @@ const UploadFile: React.FC<UploadFileProps> = ({
                     </Upload>
                     <Button
                         type="primary"
+                        disabled={!file}
                         onClick={handleUpload}
                         style={{ marginTop: 16 }}
                         className="upload-button"

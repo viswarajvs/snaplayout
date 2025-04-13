@@ -1,0 +1,48 @@
+{
+  "type": "userProfile",
+  "layout": {
+    "title": "User Profile",
+    "fields": [
+      {
+        "label": "Name",
+        "key": "details.name",
+        "type": "text"
+      },
+      {
+        "label": "Age",
+        "key": "details.age",
+        "type": "number"
+      },
+      {
+        "label": "Interests",
+        "key": "details.interests",
+        "type": "list"
+      },
+      {
+        "label": "Address",
+        "type": "group",
+        "key": "address",
+        "fields": [
+          {
+            "label": "Street",
+            "key": "details.address.street",
+            "type": "text",
+            "parent": "address"
+          },
+          {
+            "label": "City",
+            "key": "details.address.city",
+            "type": "text",
+            "parent": "address"
+          },
+          {
+            "label": "Country",
+            "key": "details.address.country",
+            "type": "text",
+            "parent": "address"
+          }
+        ]
+      }
+    ]
+  }
+}

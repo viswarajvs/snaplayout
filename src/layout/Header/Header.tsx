@@ -23,7 +23,7 @@ const Header: React.FC = () => {
 
     useEffect(() => {
         if (user && isLoggedIn) {
-            
+
             setUserDetails({
                 name: `${user?.given_name} ${user?.family_name}`,
                 email: user?.email,
@@ -38,7 +38,7 @@ const Header: React.FC = () => {
         setMenuOpen(false)
         googleLogout();
         localStorage.removeItem("google_token");
-        
+
     };
 
     const handleSettings = () => {
@@ -65,26 +65,30 @@ const Header: React.FC = () => {
                 <img src={profilePic} alt="Logo" className="logo" />
                 <span className="app-name">{appInfo.name}</span>
             </div>
-            <div className="header-right">
-                <div
-                    className="profile-container"
-                    ref={profileRef}
-                    onMouseEnter={() => setMenuOpen(true)}
-                >
-                    <span>{userDetails?.name}</span>
-                    <img
-                        src={userDetails?.picture || profilePic}
-                        alt="User Profile"
-                        className="profile-pic"
-                    />
-                    {menuOpen && (
-                        <div className="profile-menu">
-                            <button onClick={handleSettings}>Settings</button>
-                            <button onClick={handleLogout}>Logout</button>
-                        </div>
-                    )}
+            {
+                isLoggedIn &&
+                <div className="header-right">
+                    <div
+                        className="profile-container"
+                        ref={profileRef}
+                        onMouseEnter={() => setMenuOpen(true)}
+                    >
+                        <span>{userDetails?.name}</span>
+                        <img
+                            src={userDetails?.picture || profilePic}
+                            alt="User Profile"
+                            className="profile-pic"
+                        />
+                        {menuOpen && (
+                            <div className="profile-menu">
+                                <button onClick={handleSettings}>Settings</button>
+                                <button onClick={handleLogout}>Logout</button>
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
+            }
+
         </header>
     );
 };

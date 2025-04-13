@@ -1,0 +1,16 @@
+{
+"type": "userProfile",
+"details": {
+ "name": "Viswa VS",
+ "age": 55,
+ "interests": [
+ "music",
+ "traveling"
+ ],
+ "address": {
+ "street": "123 Main  dfgdfgSt",
+ "city": "Anytown fgdf",
+ "country": "USA dfgfdg"
+ }
+}
+}

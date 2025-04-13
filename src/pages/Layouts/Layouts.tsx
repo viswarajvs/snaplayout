@@ -2,15 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Button, Modal, Space } from 'antd';
 import Table, { ColumnType } from 'antd/es/table';
 import { UploadOutlined, ExpandAltOutlined, EyeOutlined, DownloadOutlined, DeleteOutlined, InfoCircleOutlined } from '@ant-design/icons';
-import './Dashboard.scss'; // Import the CSS file
-import { fileServices } from '@/services/fileServices';
 import { useFileContext } from '@/context/FileContext';
 import UploadFile from '@/layout/UploadFile/UploadFile';
 import { MessageContext } from '@/context/MessageContext';
 import { LoaderContext } from '@/context/LoaderContext';
 import { useNavigate } from 'react-router-dom';
-import Popup from '@/components/Popup/Popup';
-import DynamicFormRenderer from '@/components/DynamicLayout/DynamicLayout';
 import { layoutServices } from '@/services/layoutServices';
 
 interface File {
@@ -19,17 +15,16 @@ interface File {
     type: string;
     uploadedAt: Date;
     json: any;
+    key?: number; // Added optional key property
 }
 interface UploadData {
     [key: string]: any;
 }
-const Dashboard: React.FC = () => {
+const Layout: React.FC = () => {
     const { data, setData } = useFileContext();
     const [showJSONUpload, setShowJSONUpload] = useState(false);
     const [manageId, setManageId] = useState('');
-    const [openFIle, setOpenFile] = useState<File | null>(null);
     const [showDeletePopup, setShowDeletePopup] = useState(false);
-    const [showJSONLayout, setShowJSONLayout] = useState(false);
     const messageApi = useContext(MessageContext);
     const loader = useContext(LoaderContext);
     const navigate = useNavigate()
@@ -39,7 +34,7 @@ const Dashboard: React.FC = () => {
 
     const readAllFiles = async () => {
         loader?.showLoader()
-        const fileResponse = await fileServices.readFiles()
+        const fileResponse = await layoutServices.readLayouts()
         loader?.hideLoader()
         console.log(fileResponse)
         setData(fileResponse)
@@ -47,15 +42,18 @@ const Dashboard: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const filesPerPage = 5;
 
-    const handleOpen = async (file: File) => {
-        setShowJSONLayout(true);
-        setOpenFile(file);
+    const handleOpen = (file: string) => {
+        alert(`Opening ${file}`);
+    };
+
+    const handleOpenInNewWindow = (file: string) => {
+        alert(`Opening ${file} in a new window`);
     };
 
     const handleFileUpload = async (data: UploadData): Promise<void> => {
         const jsonData = {
+            ...data,
             type: data.type,
-            json: data,
             filename: data?.filename,
             uploadedAt: {
                 type: Date,
@@ -63,7 +61,7 @@ const Dashboard: React.FC = () => {
             },
         };
         try {
-            const res = await fileServices.createFile(jsonData);
+            const res = await layoutServices.createLayout(jsonData);
             console.log(res);
             await readAllFiles();
             setShowJSONUpload(false);
@@ -72,14 +70,14 @@ const Dashboard: React.FC = () => {
             console.error('Error uploading file:', error);
         }
     };
-    const handleDeleteJSON = (id: string) => {
-        setManageId(id)
+    const handleDeleteJSON = (type: string) => {
+        setManageId(type)
         setShowDeletePopup(true)
 
     };
     const confirmDeleteJSON = () => {
         loader?.showLoader()
-        fileServices.deleteFile(manageId).then((res: any) => {
+        layoutServices.deleteLayout(manageId).then((res: any) => {
             console.log(res)
             if (messageApi) messageApi.success('File deleted successfully!')
             readAllFiles();
@@ -90,7 +88,8 @@ const Dashboard: React.FC = () => {
     }
     const handleDownload = (file: File) => {
         loader?.showLoader()
-        const blob = new Blob([JSON.stringify(file?.json)], { type: 'application/json' });
+        const { key, _id, filename, ...filteredFile } = file;
+        const blob = new Blob([JSON.stringify(filteredFile)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -103,7 +102,7 @@ const Dashboard: React.FC = () => {
     return (
         <div className="dashboard-container">
             <div className="dashboard-header">
-                <div className="dashboard-title">Uploaded JSON Files</div>
+                <div className="dashboard-title">Uploaded layout Files</div>
                 <Space>
                     <Button
                         type="primary"
@@ -118,13 +117,12 @@ const Dashboard: React.FC = () => {
                 <Space>
                     <InfoCircleOutlined />
                     <div>
-                        <span>To manage layouts</span>
-                        <a onClick={() => navigate('layouts')}>Click here.</a>
+                        <span>To see all json files</span>
+                        <a onClick={() => navigate('/snaplayout-ui')}>Click here.</a>
                     </div>
                 </Space>
-
             </div>
-            <div className="file-list-container" style={{ overflowY: 'auto' }}>
+            <div className="file-list-container" style={{ maxHeight: '100vh', overflowY: 'auto' }}>
                 <Table
                     columns={[
                         {
@@ -152,17 +150,12 @@ const Dashboard: React.FC = () => {
                                 <Space>
                                     <Button
                                         type="link"
-                                        icon={<EyeOutlined />}
-                                        title="Preview"
-                                        onClick={() => handleOpen(record)}
-                                    />
-                                    <Button
-                                        type="link"
                                         icon={<DownloadOutlined />}
                                         title="Download"
                                         onClick={() => handleDownload(record)}
                                     />
-                                    {/* <Button
+{/*                                    
+                                    <Button
                                         type="link"
                                         icon={<UploadOutlined />}
                                         className='reupload-button'
@@ -174,7 +167,7 @@ const Dashboard: React.FC = () => {
                                         icon={<DeleteOutlined />}
                                         className='delete-button'
                                         title="Delete"
-                                        onClick={() => handleDeleteJSON(record._id)}
+                                        onClick={() => handleDeleteJSON(record.type)}
                                     />
 
                                 </Space>
@@ -196,19 +189,6 @@ const Dashboard: React.FC = () => {
 
             <UploadFile title='Select JSON file' show={showJSONUpload} setShow={setShowJSONUpload} uploadFn={handleFileUpload} />
 
-            <Popup
-                isOpen={showJSONLayout}
-                onClose={() => {
-                    setShowJSONLayout(false)
-                    setOpenFile(null)
-                }}
-                title={openFIle?.filename || ''}
-            >
-               <DynamicFormRenderer
-                    record={openFIle}
-               />
-            </Popup>
-
             <Modal
                 title="Delete File"
                 open={showDeletePopup}
@@ -224,4 +204,4 @@ const Dashboard: React.FC = () => {
     );
 };
 
-export default Dashboard;
+export default Layout;

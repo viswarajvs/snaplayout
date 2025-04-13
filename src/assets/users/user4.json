@@ -1,0 +1,17 @@
+{
+"type": "userProfile",
+"details": {
+ "name": "John Doe 1",
+ "age": 30,
+ "interests": [
+ "coding",
+ "music",
+ "traveling"
+ ],
+ "address": {
+ "street": "123 Main St",
+ "city": "Anytown",
+ "country": "USA"
+ }
+}
+}

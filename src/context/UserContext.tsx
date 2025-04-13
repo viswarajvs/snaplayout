@@ -25,7 +25,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setIsLoggedIn(userDetails.isLoggedIn)
     setUser(userDetails.details);
   }, []);
-
+ 
   return (
     <UserContext.Provider value={{ user, setUser, isLoggedIn, setIsLoggedIn }}>
       {children}
