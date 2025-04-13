@@ -3,6 +3,8 @@
 
 ### Location of deployed application
 https://viswarajvs.github.io/snaplayout-ui/
+Since the backend is hosted on Render's free tier, the service may go into sleep mode or become temporarily unresponsive due to inactivity. 
+In such cases, a manual restart from the Render dashboard might be necessary to resume operations.
 
 ### Time spent
 8 hours
@@ -11,8 +13,7 @@ https://viswarajvs.github.io/snaplayout-ui/
 While building this project, my main assumption was that everything in the UI should be driven by the layout JSON. 
 I didn’t want to hardcode anything—not even field labels or table columns. The idea is, the structure comes from the layout config,
  and the actual data comes from a separate API response. So when I render the UI, I just read from that layout—whether it's a text field, 
- group, or even a table—and bind it dynamically to the corresponding data. Even things like subtotal, tax, and total—although they logically 
- belong with the table—are treated as separate fields in the layout, just to keep things more flexible. This way, I can easily reuse the same 
+ group, or even a table—and bind it dynamically to the corresponding data. This way, I can easily reuse the same 
  frontend component for different types of documents or forms without touching the code again.
 
 ### Shortcuts/Compromises made
@@ -33,7 +34,7 @@ https://github.com/viswarajvs/snaplayout-webapi
 backend - npm install -> npm run dev
 
 ### What did you not include in your solution that you want us to know about?
-None
+Built the frontend using Vite and TypeScript, ensuring fast development, efficient builds, and strong type safety throughout the UI components.
 
 ### Other information about your submission that you feel it's important that we know
 Made efforts to ensure the application is mobile-responsive across devices. Additionally, focused on building reusable components to promote consistency and minimize 
