@@ -19,7 +19,7 @@ function App() {
         <Header />
         <Router>
           <Routes>
-            {true ? (
+            {user && isLoggedIn ? (
               <>
                 <Route path="/snaplayout-ui" element={<Dashboard />} />
                 <Route path="/snaplayout-ui/layouts" element={<Layout />} />
